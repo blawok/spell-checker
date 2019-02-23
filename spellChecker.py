@@ -1,35 +1,19 @@
 from spellchecker import SpellChecker
+try:
+    from PIL import Image
+except ImportError:
+    import Image
+import pytesseract
 
 """
 TODO:
 name/surname check; fraction/number control
 """
 
+pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files (x86)/Tesseract-OCR/tesseract.exe'
 
-dirtyString = """
-The Property of CaptatN JOHN AYLWARD
-
-‘A SourH ARABIAN ALABASTER FUNERARY MALE HEAD with sunken eyes, flat behind,
-3iin. (9.6em.) 15t Century B.C./1st Century A.D.
-
-(See ILLustRation)
-
-A SoUTH ARABIAN ALABASTER BEARDED MALE FUNERARY HEAD, with stylised
-features, with sunken eyes, straight recessed eyebrows and small mouth, che crown
-of the head flattened and flat behind, 53in. (14cm), c. 1st Century B.C.|1st Century
-AD.
-
-Various Properties
-‘A SOUTH ARABIAN ALABASTER BEARDED MALE FUNERARY Heap of stylised form,
-
-with large recessed eyes and grooved eyebrows, 7in. (17.8cm.), Ist Century B.C.|1st
-Century A.D.
-
-(See Intustration)
-
-A South Arabian alabaster male Funerary Head of highly stylised form, the pupils of
-the eyes depressed, flat behind, Gin, (15.20m.), 1st Century B.C./18t Century AD.
-"""
+# ? image to string
+dirtyString = pytesseract.image_to_string(Image.open('test20.jpg'))
 
 # ? string to list (by single spaces)
 dirtyList = dirtyString.split()
